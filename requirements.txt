@@ -1,0 +1,10 @@
+json
+django.contrib.auth
+django.db
+django.http
+django.shortcuts
+django.urls
+dajngo.views.decorators.csrf
+django.core.paginator
+django.conf
+pathlib
