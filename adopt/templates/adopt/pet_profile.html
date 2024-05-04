@@ -1,0 +1,119 @@
+{% extends "adopt/layout.html" %}
+
+{% block body %}
+    <h2>{{pet.name}}</h2>
+    <span class="date">Posted by {{ pet.registered_by }} since {{ pet.registered_date }}</span>
+    
+    <br>
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+    <div class="container flex-container">
+        <div class="row">
+            <div class="profile-img-container p-1" style="background-image:url('{{ pet.images }}');" alt="{{ pet.name }}">
+                <a href="#commentSection" class="commentSummary m-1"><span class="comment_count">{{ pet.comments.count }}</span></a>
+            
+                <button data-pet="{{ pet.id }}" type="button" class="btn like m-1" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    {{ pet.get_total_likes }}
+                </button>
+            </div>
+        
+            <ul class="profile-meta-group">
+                <li class="profile-meta"><strong>Name:</strong> {{ pet.name }}</li>
+                {% comment %} <li class="profile-meta"><strong>Type:</strong> {{ pet.get_type_display }}</li> {% endcomment %}
+                <li class="profile-meta"><strong>Age:</strong> {{ pet.get_age_display }}</li>
+                <li class="profile-meta"><strong>Gender:</strong> {{ pet.get_gender_display }}</li>
+                <li class="profile-meta"><strong>Breed:</strong> {{ pet.breed }}</li>
+                <li class="profile-meta"><strong>Size:</strong> {{ pet.get_size_display }}</li>
+            </ul>
+            {% if request.user == pet.registered_by %}
+                <a class="btn btn-primary edit m-1" href="{% url 'edit' pk=request.resolver_match.kwargs.pk %}" role="button">Edit</a>
+            {% endif %}
+            <a class="btn btn-primary edit m-1" href="#" onclick="alert('A message is sent to {{ pet.registered_by }}');" role="button">Adopt</a>
+            <a class="btn btn-primary edit m-1" href="#" onclick="alert('A message is sent to {{ pet.registered_by }}');" role="button">Foster</a>
+        </div>
+        <!-- Description -->
+        <div class="row profile-desc">
+            {{ pet.description }}
+        </div>
+        <div class="row">
+            <!-- Health -->
+            <ul class="profile-meta-group">
+                {% if pet.sterilized != None %}
+                    <li class="profile-meta"><strong>Sterilized:</strong> {{ pet.get_sterilized_display }}</li>
+                {% endif %}
+                {% if pet.vaccinated != None %}
+                    <li class="profile-meta"><strong>Vaccinated:</strong> {{ pet.get_vaccinated_display }}</li>
+                {% endif %}
+                {% if pet.energy != None %}
+                    <li class="profile-meta"><strong>Energy:</strong> {{ pet.get_energy_display }}</li>
+                {% endif %}
+                {% if pet.anziety != None %}
+                    <li class="profile-meta"><strong>Anxiety:</strong> {{ pet.get_anxiety_display }}</li>
+                {% endif %}
+            </ul>
+            <!-- Friendliness -->
+            <ul class="profile-meta-group">
+                {% if pet.dog_friendly != None %}
+                    <li class="profile-meta"><strong>Dog Friendly:</strong> {{ pet.get_dog_friendly_display }}</li>
+                {% endif %}
+                {% if pet.cat_friendly != None %}
+                    <li class="profile-meta"><strong>Cat Friendly:</strong> {{ pet.get_cat_friendly_display }}</li>
+                {% endif %}
+                {% if pet.kid_friendly != None %}   
+                    <li class="profile-meta"><strong>Kid Friendly:</strong> {{ pet.get_kid_friendly_display }}</li>
+                {% endif %}
+            </ul>
+            <!-- Training -->
+            <ul class="profile-meta-group">
+                {% if pet.house_trained != None %}
+                <li class="profile-meta"><strong>House Trained:</strong> {{ pet.get_house_trained_display }}</li>
+                {% endif %}
+                {% if pet.leash_trained != None %}
+                    <li class="profile-meta"><strong>Leash Trained:</strong> {{ pet.get_leash_trained_display }}</li>
+                {% endif %}
+                {% if pet.crate_trained != None %}
+                    <li class="profile-meta"><strong>Crate Trained:</strong> {{ pet.get_crate_trained_display }}</li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- Comment -->
+        <div class="row">
+            <h4>Comments {% if pet.comments.count > 1%}({{ pet.comments.count}}){% endif %}</h4>
+            
+            {% if pet.fostered_by != None %}
+            <h6>Contact Fostered Family <strong>{{pet.fostered_by}}</strong></h6>
+            {% else %}
+                <h6>Contact <strong>{{ pet.registered_by }}</strong> @ <strong>{{ pet.registered_by.organization }}</strong></h6>
+            {% endif %}
+
+            {% if comments %}
+            <ul class="list-group">
+                {% for comment in comments %}
+                    <li class="list-group-item">
+                        <strong>{{ comment.commenter.username }}</strong>: {{ comment.content }}
+                        <br>
+                        <small>{{ comment.created_time }}</small>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <ul class="list-group">
+                <li class="list-group-item p-3">
+                    <strong>Post a comment for any inquiry</strong>
+                    <form action="{% url 'comment' pet.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" name="comment" placeholder="Comment">
+                        <input class="btn btn-primary mt-1" type="Submit" value="Post Comment">
+                    </form>
+                </li>
+            </ul>
+                
+            {% endif %}
+        </div>
+        
+        
+    </div>
+
+{% endblock %}

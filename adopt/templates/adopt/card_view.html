@@ -1,0 +1,33 @@
+
+{% for pet in pets %} 
+    <div id="pet{{ pet.id }}"  class="card m-1" style="width:15rem;">
+        <a href="{% url 'detail' pet.id %}">
+            <div class="card-img-container" data-pet="{{ pet.id }}" style="background-image:url('{{ pet.images }}');" alt="{{ pet.name }}">
+                <!-- ANIMAL PHOTO -->
+            </div>
+        </a>
+        <div style="display:block; position:absolute; top: 17.5rem; left:0rem; width:15rem; height:2.2rem; z-index:500;">
+            <a href="{% url 'detail' pet.id %}" class="commentSummary m-1"><span class="comment_count">{{ pet.comments.count }}</span></a>
+                <button data-pet="{{ pet.id }}" type="button" class="btn like m-1" data-toggle="button" aria-pressed="false" autocomplete="off">
+                    {{ pet.get_total_likes }}
+                </button>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title mb-0"><a class="card-link" href="{% url 'detail' pet.id %}">{{ pet.name|capfirst }}</a></h5>
+            <p class="card-text">
+                <span class="date">Found since {{ pet.registered_date }}</span>
+                <br>
+                {% if not pet.fostered_by %}
+                    <span class="organization">{{ pet.registered_by.organization }}</span>
+                {% else %}
+                    <span class="organization">Fostered by {{ pet.fostered_by }}</span>
+                {% endif %}
+            </p>
+        
+            <div class="card-text">
+                <p id="desc{{ pet.id }}" class="card-text initial" contenteditable="false">{{ pet.description }}</p>
+            </div>
+            <a href="#" data-pet="{{ pet.id }}" class="more">See more</a>
+        </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,130 @@
+{% extends "adopt/layout.html" %}
+
+{% block body %}
+
+    <h2>{{title}}</h2>
+    <br>
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    {% if 'create' in request.path %}
+        <form action="{% url 'create' %}" method="post">
+    {% else %}
+        <form action="{% url 'edit' pk=request.resolver_match.kwargs.pk %}" method="post">
+    {% endif %}
+        {% csrf_token %}
+
+        <div class="row gx-3">
+            <div class="form-group col-sm-4">
+                {{ form.name }}
+                {{ form.name.label_tag}}
+            </div>
+            <div class="form-group col-sm-4">
+                {{ form.gender }}
+                {{ form.gender.label_tag}}
+            </div>
+            <div class="form-group floating col-sm-4">
+                {{ form.type }}
+                {{ form.type.label_tag}}
+            </div>
+        </div>
+        <div class="row gx-3">
+            <div class="form-group floating col-sm-4">
+                {{ form.breed }}
+                {{ form.breed.label_tag}}
+            </div>
+            <div class="form-group floating col-sm-4">
+                {{ form.age }}
+                {{ form.age.label_tag}}
+            </div>
+            <div class="form-group floating col-sm-4">
+                {{ form.size }}
+                {{ form.size.label_tag }}
+            </div>
+        </div>
+
+        <div class="row gx-3">
+            <div class="form-group floating col-sm-12" style="height:9rem;">
+                {{ form.description }}
+                {{ form.description.label_tag }}
+            </div>
+        </div>      
+
+        <div class="row gx-1">
+            <div class="form-group floating col-sm-4">
+                {{ form.adopted_by }}
+                {{ form.adopted_by.label_tag}}
+            </div>
+            <div class="form-group floating col-sm-4">
+                {{ form.fostered_by }}
+                {{ form.fostered_by.label_tag}}
+            </div>
+        </div>   
+        <div class="row gx-3">
+            <div class="form-group floating col-sm-12">
+                {{ form.images }}
+                {{ form.images.label_tag }}
+            </div>
+        </div> 
+        <div class="row gx-3">
+            <fieldset class="col-sm-4 pt-4">
+                <legend>Health</legend>
+                <div class="form-group floating">
+                    {{ form.sterilized }}
+                    {{ form.sterilized.label_tag }}
+                </div>
+                <div class="form-group floating">
+                    {{ form.vaccinated }}
+                    {{ form.vaccinated.label_tag }}
+                </div>
+            </fieldset>  
+            <fieldset class="col-sm-4 pt-4">
+                <legend>Personality</legend>
+                <div class="form-group floating">
+                    {{ form.dog_friendly }}
+                    {{ form.dog_friendly.label_tag}}
+                </div>
+                <div class="form-group floating">
+                    {{ form.cat_friendly }}
+                    {{ form.cat_friendly.label_tag }}
+                </div>
+                <div class="form-group floating">
+                    {{ form.kid_friendly }}
+                    {{ form.kid_friendly.label_tag}}
+                </div>
+                <div class="form-group floating">
+                    {{ form.energy }}
+                    {{ form.energy.label_tag}}
+                </div>
+                <div class="form-group floating">
+                    {{ form.anxiety }}
+                    {{ form.anxiety.label_tag}}
+                </div>
+            </fieldset>
+            <fieldset class="col-sm-3 pt-4">
+                <legend>Training</legend>
+                <div class="form-group floating">
+                    {{ form.house_trained }}
+                    {{ form.house_trained.label_tag }}
+                </div>
+                <div class="form-group floating">
+                    {{ form.leash_trained }}
+                    {{ form.leash_trained.label_tag}}
+                </div>
+                <div class="form-group floating">
+                    {{ form.crate_trained }}
+                    {{ form.crate_trained.label_tag }}
+                </div>
+            </fieldset>
+        </div>
+        <div class="row gx-3">
+            <div class="form-group floating col-sm-12">
+                <input class="btn btn-primary" type="submit" value="Save">
+                <input class="btn btn-primary" type="button" value="Cancel">
+            </div>
+        </div>
+        
+    </form>
+
+{% endblock %}

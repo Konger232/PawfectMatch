@@ -1,0 +1,89 @@
+{% extends "adopt/layout.html" %}
+
+{% block body %}
+
+    <h2>Find My Pawfect Match</h2>
+    {{form_error}}
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+    <form method="post" autocomplete="off">
+        {% csrf_token %}
+
+        <div class="row gx-1">
+            <fieldset class="col-sm-4">
+                <legend>Adopt</legend>
+                {{form.type}}
+            </fieldset>
+            <fieldset class="col-sm-4">
+                <legend>{{form.gender.label}}</legend>
+                {{form.gender}}
+            </fieldset>
+        </div>
+        <div class="row gx-3">
+            <fieldset class="col-sm-4">
+                <legend>{{form.age.label}}</legend>
+                {{form.age}}
+            </fieldset>
+            <fieldset class="col-sm-4">
+                <legend>{{form.size.label}}</legend>
+                {{form.size}}
+            </fieldset>
+        </div>
+        <div class="row gx-3">
+            <fieldset class="col-sm-4">
+                <legend>{{form.sterilized.label}}</legend>
+                {{ form.sterilized }}
+            </fieldset>
+            <fieldset class="col-sm-4">
+                <legend>{{form.vaccinated.label}}</legend>
+                {{form.vaccinated}}
+            </fieldset>
+        </div>
+        <div class="row gx-3">
+            <fieldset class="col-sm-4">
+                <legend>{{form.energy.label}}</legend>
+                {{ form.energy }}
+            </fieldset>
+            <fieldset class="col-sm-4">
+                <legend>{{form.anxiety.label}}</legend>
+                {{form.anxiety}}
+            </fieldset>
+        </div>
+        <div class="row gx-3">
+            <fieldset class="col-sm-3">
+                <legend>{{form.kid_friendly.label}}</legend>
+                {{ form.kid_friendly }}
+            </fieldset>
+            <fieldset class="col-sm-3">
+                <legend>{{form.dog_friendly.label}}</legend>
+                {{form.dog_friendly}}
+            </fieldset>
+            <fieldset class="col-sm-3">
+                <legend>{{form.cat_friendly.label}}</legend>
+                {{form.cat_friendly}}
+            </fieldset>       
+        </div>
+        <div class="row gx-3">
+            <fieldset class="col-sm-3">
+                <legend>{{form.house_trained.label}}</legend>
+                {{form.house_trained}}
+            </fieldset>
+            <fieldset class="col-sm-3">
+                <legend>{{form.leash_trained.label}}</legend>
+                {{form.leash_trained}}
+            </fieldset>
+            <fieldset class="col-sm-3">
+                <legend>{{form.crate_trained.label}}</legend>
+                {{form.crate_trained}}
+            </fieldset>       
+        </div>
+        
+        <div class="row gx-3">
+            <div class="form-group floating col-sm-12">
+                <input id="search_btn" class="btn btn-primary" type="submit" value="Search">
+                <input id="reset_btn" class="btn btn-primary" type="reset" value="Reset">
+            </div>
+        </div>
+    </form>
+{% endblock %}

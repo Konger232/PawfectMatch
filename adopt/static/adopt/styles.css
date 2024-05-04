@@ -1,0 +1,276 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    /* min-height: 100vh; */
+    background-color: #f0f0f0;
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+
+h1, h2, h4 {
+    margin-top:20px;
+    color: #dc3545;
+}
+
+.date {
+    color:rgb(126, 129, 156);
+    font-size: .8rem;
+    line-height: 0%;
+}
+
+.organization {
+    font-size:.9rem;
+    font-weight:600;
+    color: rgb(53, 57, 90);
+    line-height: .8%;
+}
+
+.form-group {
+    position: relative;
+    height: 55px;
+    margin-bottom: 1rem;
+}
+
+.form-group>label {
+    position: absolute;
+    top: -2px;
+    left: 5px; 
+    font-size: 1.1em;
+    font-weight: 500;
+    pointer-events: none;
+    margin-top:0px;
+    /* background-color:#f0f0f0; */
+    padding: 0px 10px 0px 10px;
+    transition: 0.1s;
+    transform-origin: bottom left;
+    transform: translate(1px,-85%) scale(0.80); 
+}
+
+.form-control-input {
+    margin-left:10px;
+}
+
+fieldset {
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding-top:10px;
+    padding-right:10px;
+    padding-left:10px;
+    padding-bottom:10px;
+    margin:3px;
+}
+
+
+fieldset>legend>label {
+    font-size:0.8em;
+    font-weight:500;
+    line-height: 1re;
+    color:#005ebf;  
+}
+
+fieldset>legend {
+    width:fit-content;
+    margin:15px;
+    
+    font-size:1rem;
+    font-weight:500;
+    color:#005ebf;
+    margin-bottom:0;
+    padding: 0 0px;
+    float:none;
+}
+
+input[type="file"] {
+  height:3rem;
+  padding-top:10px;
+}
+
+.likes_count {
+    font-size:small;
+    vertical-align: middle;
+}
+
+.like {
+    position:relative;
+    display:block;
+    height:30px;
+    width:50px;
+    background-image: url("/static/adopt/images/white_heart.png");
+    background-position-x: 82%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    background-color: crimson;
+    background-size: 10px 10px;
+    text-align: left;
+    border-style:none;
+    border-radius: 6px;
+    color:aliceblue;
+    padding:8 3 3 5px;
+    font-size:small;
+    float: right;
+    z-index: 500;
+}
+
+.like:hover {
+    color:white;
+    background-color: crimson;
+    animation: pulse 1s infinite alternate; 
+}
+
+#commentSection {
+    padding: 5px 10px 10px 5px;  
+}
+
+.comment_count {
+    display: block;
+    text-align:center;
+    padding: 5px 10px 10px 5px;
+    margin-right:10px;
+}
+
+.commentSummary {
+    position:relative;
+    display:block;
+    height:30px;
+    width:3rem;
+    background-image: url("/static/adopt/images/comment.png");
+    background-position-x: 85%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    background-color: #0d6efd;
+    background-size: 10px 10px;
+    text-align: left;
+    border-style:none;
+    border-radius: 6px;
+    color:aliceblue;
+    padding:8 3 3 5px;
+    font-size:small;
+    float: right;
+    text-decoration:none;  
+    z-index: 500; 
+}
+
+.comment:hover, .commentSummary:hover {
+    color:white;
+    animation: pulse 1s infinite alternate; 
+}
+
+
+.edit {
+    position:relative;
+    height:30px;
+    width: 60px;
+    background-color:dodgerblue;    
+    text-align: center;
+    border-style:none;
+    border-radius: 6px;
+    color:aliceblue;
+    padding:8 3 3 5px;
+    font-size:small;
+}
+
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card {
+    box-shadow: 0px 2px 4px rbg(0,0,0,2);
+}
+
+.card-buttons {
+    display:block; 
+    position:absolute; 
+    top: 17rem; 
+    left:0rem; 
+    width:15rem; 
+    height:3rem; 
+    z-index:500;
+}
+
+.card-img-container {
+    display:block;
+    height:20rem;
+    background-size:cover;
+    overflow:hidden;
+    cursor: pointer;
+}
+
+.profile-img-container {
+    display:block;
+    width:20rem; 
+    height:30rem; 
+    background-size:cover;
+    overflow:hidden;
+    cursor: pointer; 
+}
+
+.card-text.initial {
+    display: block;
+    height: 7.8rem;
+    overflow:hidden;
+    /* line-height: 1rem; */
+
+}
+
+.card-text.full {
+    overflow:auto;
+}   
+
+.more {
+    border:0px;
+    background:none;
+    color:#999999;
+    font-size:0.7rem;
+}
+
+ul {
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0rem;
+    /* width: 20rem; */
+    margin:1rem;
+
+}
+
+.profile-meta-group {
+    background-color: #efefef;
+    width:20rem;
+}
+
+.profile-meta {
+    
+    border-bottom: 1px dotted grey;
+    height:3.5rem;
+    padding: 15px 15px 15px 15px;
+    font-size:1.2rem;
+}
+
+.profile-desc {
+    padding: 15px 15px 15px 15px;
+    font-size:1.2rem;
+}
+
+ul.list-group {
+    font-size: 1rem;
+    /* width:40rem; 
+        max-width:40rem;
+    min-width:40rem;*/
+    margin:0;
+
+}
+
+.card-link.img:hover{
+    border:5px doted red;
+}
+

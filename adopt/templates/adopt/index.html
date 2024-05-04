@@ -1,0 +1,30 @@
+{% extends "adopt/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h1>Adopt</h1>
+    
+    <div class="row">
+        <div class="flex-container">
+            <!-- Card View Template -->
+            {% include 'adopt/card_view.html' with pets=pets %}
+        </div>
+    </div>    
+
+    <div class="row">
+        <h2>Browse by Organization</h2>
+    </div>
+
+    <div class="row">   
+        {% for organization in organizations %} 
+        <div class="col-sm-3">
+            <div class="card text-center p-3">
+                <a href="{% url 'organization' organization.id %}"><img class="card-img-top" style="" src="{{ organization.image }}"></a>
+                <strong><a href="{% url 'organization' organization.id %}">{{ organization.name }}</a></strong>
+            </div>
+        </div>
+        {% endfor %}
+    </div>   
+
+     
+{% endblock %}
